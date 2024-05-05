@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:popcorn_portal/core/routing/app_router.dart';
-import 'package:popcorn_portal/finace_tracker.dart';
+import 'package:popcorn_portal/popcorn_portal.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

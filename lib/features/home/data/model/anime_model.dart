@@ -1,54 +1,20 @@
+import 'package:json_annotation/json_annotation.dart';
 
 import 'anime_data.dart';
+import 'pagination_model.dart';
+part 'anime_model.g.dart';
 
+@JsonSerializable()
 class Anime {
-  Anime({
-    required this.pagination,
-    required this.data,
-  });
   Pagination? pagination;
   List<Data>? data;
-
-  Anime.fromJson(Map<String, dynamic> json) {
-    pagination = Pagination.fromJson(json['pagination']);
-    data = List.from(json['data']).map((e) => Data.fromJson(e)).toList();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['pagination'] = pagination!.toJson();
-    _data['data'] = data!.map((e) => e.toJson()).toList();
-    return _data;
-  }
-}
-
-class Pagination {
-  Pagination({
-    required this.lastVisiblePage,
-    required this.hasNextPage,
-    required this.currentPage,
-    required this.items,
+  Anime({
+    this.pagination,
+    this.data,
   });
-  int? lastVisiblePage;
-  bool? hasNextPage;
-  int? currentPage;
-  Items? items;
+  factory Anime.fromJson(Map<String, dynamic> json) => _$AnimeFromJson(json);
+  Map<String, dynamic> toJson() => _$AnimeToJson(this);
 
-  Pagination.fromJson(Map<String, dynamic> json) {
-    lastVisiblePage = json['last_visible_page'];
-    hasNextPage = json['has_next_page'];
-    currentPage = json['current_page'];
-    items = Items.fromJson(json['items']);
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['last_visible_page'] = lastVisiblePage;
-    _data['has_next_page'] = hasNextPage;
-    _data['current_page'] = currentPage;
-    _data['items'] = items!.toJson();
-    return _data;
-  }
 }
 
 class Items {
@@ -76,15 +42,13 @@ class Items {
   }
 }
 
-
-
 class Titles {
+  String? type;
+  String? title;
   Titles({
     required this.type,
     required this.title,
   });
-  String? type;
-  String? title;
 
   Titles.fromJson(Map<String, dynamic> json) {
     type = json['type'];

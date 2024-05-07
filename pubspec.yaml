@@ -18,7 +18,8 @@ dependencies:
   
   #Logic
   http: ^1.2.1
-  json_annotation: ^4.9.0
+  json_serializable: ^6.7.1
+  json_annotation: ^4.8.1
 
 
 dev_dependencies:

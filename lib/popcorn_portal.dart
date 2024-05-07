@@ -5,7 +5,7 @@ import 'core/routing/routes.dart';
 
 class PopcornPortal extends StatelessWidget {
  final AppRouter appRouter;
-  const PopcornPortal({Key? key, required this.appRouter}) : super(key: key);
+  const PopcornPortal({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {

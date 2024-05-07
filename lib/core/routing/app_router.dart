@@ -7,7 +7,7 @@ class AppRouter {
   Route? generatRoutes(RouteSettings settings) {
     switch (settings.name) {
       case Routes.home:
-        return MaterialPageRoute(builder: (context) => const HomePage());
+        return MaterialPageRoute(builder: (context) =>  HomePage());
     }
     return null;
   }

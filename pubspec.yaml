@@ -15,6 +15,10 @@ dependencies:
   dio: ^5.4.3+1
   retrofit: ^4.1.0
   retrofit_generator: ^8.1.0
+  
+  #Logic
+  http: ^1.2.1
+  json_annotation: ^4.9.0
 
 
 dev_dependencies:

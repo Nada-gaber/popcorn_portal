@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 // class HomePage extends StatelessWidget {
 //   const HomePage({super.key});
@@ -70,18 +71,18 @@ class _HomePageState extends State<HomePage> {
                         'First Anime Title: ${animeData!.data![0].title}',
                         style: const TextStyle(fontSize: 18.0),
                       ),
+                    Text(
+                      'First Anime Title: ${animeData!.data![0].episodes}',
+                      style: const TextStyle(fontSize: 18.0),
+                    ),
+                    Text(
+                      'First Anime Title: ${animeData!.data![0].rank}',
+                      style: const TextStyle(fontSize: 18.0),
+                    ),
+                    Text(animeData!.pagination!.items!.count.toString()),
+                    Text(animeData!.data![6].images!.jpg!.imageUrl.toString())
                   ],
                 ),
-
-          // SizedBox(height: 16.0),
-          // if (animeData!.data!.isNotEmpty)
-          //   Text(
-          //     'First Anime Title: ${animeData!.data![0].title}' ??
-          //         'no data',
-          //     style: TextStyle(fontSize: 18.0),
-          //   ),
-          // ],
-          //  ),
         ),
       ),
     );

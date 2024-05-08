@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'anime_data.dart';
+import 'data_images.dart';
 import 'pagination_model.dart';
 part 'anime_model.g.dart';
 
@@ -14,18 +15,17 @@ class Anime {
   });
   factory Anime.fromJson(Map<String, dynamic> json) => _$AnimeFromJson(json);
   Map<String, dynamic> toJson() => _$AnimeToJson(this);
-
 }
 
 class Items {
   Items({
-    required this.count,
-    required this.total,
-    required this.perPage,
+    this.count,
+    this.total,
+    this.perPage,
   });
-  late final int count;
-  late final int total;
-  late final int perPage;
+  int? count;
+  int? total;
+  int? perPage;
 
   Items.fromJson(Map<String, dynamic> json) {
     count = json['count'];
@@ -63,76 +63,9 @@ class Titles {
   }
 }
 
-class Images {
-  Images({
-    required this.jpg,
-    required this.webp,
-  });
-  late final Jpg jpg;
-  late final Webp webp;
 
-  Images.fromJson(Map<String, dynamic> json) {
-    jpg = Jpg.fromJson(json['jpg']);
-    webp = Webp.fromJson(json['webp']);
-  }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['jpg'] = jpg.toJson();
-    _data['webp'] = webp.toJson();
-    return _data;
-  }
-}
 
-class Jpg {
-  Jpg({
-    required this.imageUrl,
-    required this.smallImageUrl,
-    required this.largeImageUrl,
-  });
-  late final String imageUrl;
-  late final String smallImageUrl;
-  late final String largeImageUrl;
-
-  Jpg.fromJson(Map<String, dynamic> json) {
-    imageUrl = json['image_url'];
-    smallImageUrl = json['small_image_url'];
-    largeImageUrl = json['large_image_url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['image_url'] = imageUrl;
-    _data['small_image_url'] = smallImageUrl;
-    _data['large_image_url'] = largeImageUrl;
-    return _data;
-  }
-}
-
-class Webp {
-  Webp({
-    required this.imageUrl,
-    required this.smallImageUrl,
-    required this.largeImageUrl,
-  });
-  late final String imageUrl;
-  late final String smallImageUrl;
-  late final String largeImageUrl;
-
-  Webp.fromJson(Map<String, dynamic> json) {
-    imageUrl = json['image_url'];
-    smallImageUrl = json['small_image_url'];
-    largeImageUrl = json['large_image_url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['image_url'] = imageUrl;
-    _data['small_image_url'] = smallImageUrl;
-    _data['large_image_url'] = largeImageUrl;
-    return _data;
-  }
-}
 
 class Trailer {
   Trailer({

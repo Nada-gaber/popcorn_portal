@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Jikan API Test'),
+          title: const Text('Jikan API Test'),
         ),
         body: Center(
           child: animeData == null
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                       style: const TextStyle(fontSize: 18.0),
                     ),
                     Text(animeData!.pagination!.items!.count.toString()),
-                    Text(animeData!.data![6].images!.jpg!.imageUrl.toString())
+                    Text(animeData!.data![0].images!.jpg!.imageUrl.toString())
                   ],
                 ),
         ),

@@ -1,16 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
-// class HomePage extends StatelessWidget {
-//   const HomePage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: Text('hi dude'),
-//     );
-//   }
-// }
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -80,7 +68,17 @@ class _HomePageState extends State<HomePage> {
                       style: const TextStyle(fontSize: 18.0),
                     ),
                     Text(animeData!.pagination!.items!.count.toString()),
-                    Text(animeData!.data![0].images!.jpg!.imageUrl.toString())
+                    Text(animeData!.data![0].images!.jpg!.imageUrl.toString()),Text(
+    'Image URL: ${animeData?.data?[0].images?.jpg?.imageUrl ?? 'No image available'}',
+    style: const TextStyle(fontSize: 18.0),
+),
+
+                    Image.network(
+                      animeData?.data?[0].images?.jpg?.imageUrl ??
+                          'path/to/default_image.png',
+                      width: 100,
+                      height: 100,
+                    ),
                   ],
                 ),
         ),

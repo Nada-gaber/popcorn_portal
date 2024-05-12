@@ -1,87 +1,74 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:popcorn_portal/core/networking/web_services.dart';
+import 'package:popcorn_portal/features/home/data/repo/anime_data_repo.dart';
+import 'package:popcorn_portal/features/home/logic/cubit/anime_data_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:popcorn_portal/features/home/logic/cubit/anime_data_states.dart';
+import 'package:popcorn_portal/features/home/ui/widgets/anime_data_item_widget.dart';
 
-import '../../data/model/anime_model.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  Future<Anime?> fetchAnimeData() async {
-    final response =
-        await http.get(Uri.parse('https://api.jikan.moe/v4/anime'));
-    if (response.statusCode == 200 && response.body.isNotEmpty) {
-      return Anime.fromJson(jsonDecode(response.body));
-    } else {
-      // Handle error
-      print('Failed to load anime data');
-      // return
-      try {
-        return Anime.fromJson(jsonDecode(response.body));
-      } on FormatException catch (e) {
-        // Handle JSON decode error
-        print('Failed to decode JSON: $e');
-        return null;
-      }
-    }
-  }
-
-  Anime? animeData;
-
-  @override
-  void initState() {
-    super.initState();
-    fetchAnimeData().then((data) => setState(() {
-          animeData = data;
-        }));
-  }
+class AnimeDataScreen extends StatelessWidget {
+  const AnimeDataScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Jikan API Test'),
-        ),
-        body: Center(
-          child: animeData == null
-              ? const CircularProgressIndicator()
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 16.0),
-                    if (animeData!
-                        .data!.isNotEmpty) // Use null-conditional operator
-                      Text(
-                        'First Anime Title: ${animeData!.data![0].title}',
-                        style: const TextStyle(fontSize: 18.0),
-                      ),
-                    Text(
-                      'First Anime Title: ${animeData!.data![0].episodes}',
-                      style: const TextStyle(fontSize: 18.0),
-                    ),
-                    Text(
-                      'First Anime Title: ${animeData!.data![0].rank}',
-                      style: const TextStyle(fontSize: 18.0),
-                    ),
-                    Text(animeData!.pagination!.items!.count.toString()),
-                    Text(animeData!.data![0].images!.jpg!.imageUrl.toString()),Text(
-    'Image URL: ${animeData?.data?[0].images?.jpg?.imageUrl ?? 'No image available'}',
-    style: const TextStyle(fontSize: 18.0),
-),
-
-                    Image.network(
-                      animeData?.data?[0].images?.jpg?.imageUrl ??
-                          'path/to/default_image.png',
-                      width: 100,
-                      height: 100,
-                    ),
-                  ],
-                ),
-        ),
+    return BlocProvider<AnimeDataCubit>(
+      create: (context) {
+        final cubit = AnimeDataCubit(AnimeDataRepo(WebServices(Dio())));
+        cubit.fetchCompanyInfo();
+        return cubit;
+      },
+      child: BlocConsumer<AnimeDataCubit, AnimeDataState>(
+        listener: (context, state) {
+          if (state is AnimeDataError) {
+            final errorState = state;
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Error: $errorState'),
+              ),
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is AnimeDataInitial) {
+            return const Center(
+                child: CircularProgressIndicator(
+              strokeWidth: 2,
+            ));
+          } else if (state is AnimeDataLoading) {
+            return const Center(
+                child: CircularProgressIndicator(
+              strokeWidth: 2,
+            ));
+          } else if (state is AnimeDataLoaded) {
+            final animeData = state.animeData;
+            return Scaffold(
+              backgroundColor: const Color(0xff061428),
+              body: SingleChildScrollView(
+                child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: animeData.data!.length,
+                      itemBuilder: (context, index) {
+                        return AnimeDataItme(
+                            imageUrl:animeData.data![index].images!.jpg!.imageUrl.toString(),
+                            title: animeData.data![index].episodes.toString(),
+                            location:
+                                animeData.data![index].members.toString());
+                      },
+                    ),),
+              ),
+            );
+          } else if (state is AnimeDataError) {
+            return const Text('Error fetching company info.');
+          } else {
+            return Text('Unexpected state: $state');
+          }
+        },
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:popcorn_portal/core/networking/web_services.dart';
-import '../model/anime_model.dart';
+import '../model/anime/anime_model.dart';
 
 class AnimeDataRepo {
   WebServices _webServices;

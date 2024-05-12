@@ -15,20 +15,10 @@ class AnimeDataScreen extends StatelessWidget {
     return BlocProvider<AnimeDataCubit>(
       create: (context) {
         final cubit = AnimeDataCubit(AnimeDataRepo(WebServices(Dio())));
-        cubit.fetchCompanyInfo();
+        cubit.fetchAnimeData();
         return cubit;
       },
-      child: BlocConsumer<AnimeDataCubit, AnimeDataState>(
-        listener: (context, state) {
-          if (state is AnimeDataError) {
-            final errorState = state;
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Error: $errorState'),
-              ),
-            );
-          }
-        },
+      child: BlocBuilder<AnimeDataCubit, AnimeDataState>(
         builder: (context, state) {
           if (state is AnimeDataInitial) {
             return const Center(
@@ -53,14 +43,17 @@ class AnimeDataScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: animeData.data!.length,
                     itemBuilder: (context, index) {
-                      return AnimeDataItme(
-                        imageUrl: animeData.data![index].images!.jpg!.imageurl
-                            .toString(),
-                        title: animeData.data![index].title.toString(),
-                        duration: animeData.data![index].duration.toString(),
-                        rating: animeData.data![index].rating.toString(),
-                        type: animeData.data![index].type.toString(),
-                      );
+                      return  AnimeDataItme(
+                                imageUrl: animeData
+                                    .data![index].images!.jpg!.imageurl
+                                    .toString(),
+                                title: animeData.data![index].title.toString(),
+                                duration:
+                                    animeData.data![index].duration.toString(),
+                                rating:
+                                    animeData.data![index].rating.toString(),
+                                type: animeData.data![index].type.toString(),
+                              );
                     },
                   ),
                 ),

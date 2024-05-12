@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'data_images.dart';
+import 'data_images/data_images.dart';
 part 'anime_data.g.dart';
 
 @JsonSerializable()

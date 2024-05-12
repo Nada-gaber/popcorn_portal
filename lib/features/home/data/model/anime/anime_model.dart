@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:popcorn_portal/features/home/data/model/anime.dart';
-import '../../../pagination/data/model/pagination_model.dart';
+import 'package:popcorn_portal/features/home/data/model/data/data.dart';
+import '../../../../pagination/data/model/pagination_model.dart';
 part 'anime_model.g.dart';
 
 @JsonSerializable()

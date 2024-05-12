@@ -8,7 +8,7 @@ class AnimeDataCubit extends Cubit<AnimeDataState> {
 
   AnimeDataCubit(this._AnimeDataRepository): super(AnimeDataInitial());
 
-  Future<void> fetchCompanyInfo() async {
+  Future<void> fetchAnimeData() async {
     emit( AnimeDataLoading());
     try {
       final animeData = await _AnimeDataRepository.getAnimeData();

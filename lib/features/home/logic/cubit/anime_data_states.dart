@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../data/model/anime_model.dart';
+import '../../data/model/anime/anime_model.dart';
 
 @immutable
 abstract class AnimeDataState {}

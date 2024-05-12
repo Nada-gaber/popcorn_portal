@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:popcorn_portal/features/home/logic/cubit/anime_data_states.dart';
 import 'package:popcorn_portal/features/home/ui/widgets/anime_data_item_widget.dart';
 
-
 class AnimeDataScreen extends StatelessWidget {
   const AnimeDataScreen({super.key});
 
@@ -44,27 +43,31 @@ class AnimeDataScreen extends StatelessWidget {
           } else if (state is AnimeDataLoaded) {
             final animeData = state.animeData;
             return Scaffold(
-              backgroundColor: const Color(0xff061428),
+              backgroundColor: Color.fromARGB(255, 7, 3, 26),
               body: SingleChildScrollView(
                 child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: animeData.data!.length,
-                      itemBuilder: (context, index) {
-                        return AnimeDataItme(
-                            imageUrl:animeData.data![index].images!.jpg!.imageUrl.toString(),
-                            title: animeData.data![index].episodes.toString(),
-                            location:
-                                animeData.data![index].members.toString());
-                      },
-                    ),),
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: animeData.data!.length,
+                    itemBuilder: (context, index) {
+                      return AnimeDataItme(
+                        imageUrl: animeData.data![index].images!.jpg!.imageurl
+                            .toString(),
+                        title: animeData.data![index].title.toString(),
+                        duration: animeData.data![index].duration.toString(),
+                        rating: animeData.data![index].rating.toString(),
+                        type: animeData.data![index].type.toString(),
+                      );
+                    },
+                  ),
+                ),
               ),
             );
           } else if (state is AnimeDataError) {
-            return const Text('Error fetching company info.');
+            return const Text('Error fetching data.');
           } else {
             return Text('Unexpected state: $state');
           }

@@ -13,12 +13,39 @@ class _WebServices implements WebServices {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://moviesdatabase.p.rapidapi.com/';
+    baseUrl ??= 'https://api.jikan.moe/v4/anime/';
   }
 
   final Dio _dio;
 
   String? baseUrl;
+
+  @override
+  Future<Anime> getAnimeData() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Anime>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'https://api.jikan.moe/v4/anime/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = Anime.fromJson(_result.data!);
+    return value;
+  }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&

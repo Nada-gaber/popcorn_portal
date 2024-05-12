@@ -4,13 +4,17 @@ import 'package:flutter/material.dart';
 class AnimeDataItme extends StatelessWidget {
   final String imageUrl;
   final String title;
-  final String location;
+  final String duration;
+  final String rating;
+  final String type;
 
   const AnimeDataItme({
     super.key,
     required this.imageUrl,
     required this.title,
-    required this.location,
+    required this.duration,
+    required this.rating,
+    required this.type,
   });
 
   @override
@@ -25,19 +29,20 @@ class AnimeDataItme extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: screenHeight / 5.8,
+              height: screenHeight / 3.5,
               child: AspectRatio(
                 aspectRatio: 1 / 1.2,
                 child: ClipRRect(
                     borderRadius: BorderRadiusDirectional.circular(16),
                     child: Hero(
-                        tag: imageUrl,
-                        child: CachedNetworkImage(
+                      tag: imageUrl,
+                      child: CachedNetworkImage(
                         imageUrl: imageUrl,
                         fit: BoxFit.fill,
-                      ),),
+                      ),
+                    )),
               ),
-            ), ),
+            ),
             const SizedBox(
               width: 6,
             ),
@@ -45,7 +50,7 @@ class AnimeDataItme extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //episodes
+                  //   episodes
                   Padding(
                     padding: const EdgeInsetsDirectional.symmetric(
                         horizontal: 8, vertical: 8),
@@ -58,24 +63,43 @@ class AnimeDataItme extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  //Members
+                  //       Members
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Icon(
-                        Icons.people,
+                        Icons.timelapse,
                         size: screenWidth / 15,
                         color: Colors.purpleAccent,
                       ),
                       Flexible(
                         child: Text(
-                          location,
+                          duration,
                           style: TextStyle(
                               fontSize: screenWidth / 24,
                               fontWeight: FontWeight.w300),
                         ),
                       ),
                     ],
+                  ),
+                  Text(
+                    rating,
+                    style: TextStyle(
+                        fontSize: screenWidth / 20,
+                        fontWeight: FontWeight.w300),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    type,
+                    style: TextStyle(
+                        fontSize: screenWidth / 20,
+                        fontWeight: FontWeight.w300),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),

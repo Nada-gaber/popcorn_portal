@@ -1,41 +1,62 @@
-import 'package:json_annotation/json_annotation.dart';
-part 'data_images.g.dart';
-
-@JsonSerializable()
 class Images {
   Jpg? jpg;
   Webp? webp;
 
   Images({this.jpg, this.webp});
 
-  factory Images.fromJson(Map<String, dynamic> json) => _$ImagesFromJson(json);
+  Images.fromJson(Map<String, dynamic> json) {
+    jpg = json['jpg'] != null ? Jpg?.fromJson(json['jpg']) : null;
+    webp = json['webp'] != null ? Webp?.fromJson(json['webp']) : null;
+  }
 
-  Map<String, dynamic> toJson() => _$ImagesToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['jpg'] = jpg!.toJson();
+    data['webp'] = webp!.toJson();
+    return data;
+  }
 }
 
-@JsonSerializable()
 class Jpg {
-  String? imageUrl;
-  String? smallImageUrl;
-  String? largeImageUrl;
+  String? imageurl;
+  String? smallimageurl;
+  String? largeimageurl;
 
-  Jpg({this.imageUrl, this.smallImageUrl, this.largeImageUrl});
+  Jpg({this.imageurl, this.smallimageurl, this.largeimageurl});
 
-  factory Jpg.fromJson(Map<String, dynamic> json) => _$JpgFromJson(json);
+  Jpg.fromJson(Map<String, dynamic> json) {
+    imageurl = json['image_url'];
+    smallimageurl = json['small_image_url'];
+    largeimageurl = json['large_image_url'];
+  }
 
-  Map<String, dynamic> toJson() => _$JpgToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['image_url'] = imageurl;
+    data['small_image_url'] = smallimageurl;
+    data['large_image_url'] = largeimageurl;
+    return data;
+  }
 }
 
-
-@JsonSerializable()
 class Webp {
-  String? imageUrl;
-  String? smallImageUrl;
-  String? largeImageUrl;
+  String? imageurl;
+  String? smallimageurl;
+  String? largeimageurl;
 
-  Webp({this.imageUrl, this.smallImageUrl, this.largeImageUrl});
+  Webp({this.imageurl, this.smallimageurl, this.largeimageurl});
 
-  factory Webp.fromJson(Map<String, dynamic> json) => _$WebpFromJson(json);
+  Webp.fromJson(Map<String, dynamic> json) {
+    imageurl = json['image_url'];
+    smallimageurl = json['small_image_url'];
+    largeimageurl = json['large_image_url'];
+  }
 
-  Map<String, dynamic> toJson() => _$WebpToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['image_url'] = imageurl;
+    data['small_image_url'] = smallimageurl;
+    data['large_image_url'] = largeimageurl;
+    return data;
+  }
 }

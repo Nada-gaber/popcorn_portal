@@ -1,7 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-
-import 'anime_data.dart';
-import 'data_images.dart';
+import 'package:popcorn_portal/features/home/data/model/anime.dart';
 import '../../../pagination/data/model/pagination_model.dart';
 part 'anime_model.g.dart';
 
@@ -63,34 +61,34 @@ class Titles {
   }
 }
 
-class Trailer {
-  Trailer({
-    this.youtubeId,
-    this.url,
-    this.embedUrl,
-    required this.images,
-  });
-  late final String? youtubeId;
-  late final String? url;
-  late final String? embedUrl;
-  late final Images images;
+// class Trailer {
+//   Trailer({
+//     this.youtubeId,
+//     this.url,
+//     this.embedUrl,
+//     required this.images,
+//   });
+//   late final String? youtubeId;
+//   late final String? url;
+//   late final String? embedUrl;
+//   late final Images images;
 
-  Trailer.fromJson(Map<String, dynamic> json) {
-    youtubeId = null;
-    url = null;
-    embedUrl = null;
-    images = Images.fromJson(json['images']);
-  }
+//   Trailer.fromJson(Map<String, dynamic> json) {
+//     youtubeId = null;
+//     url = null;
+//     embedUrl = null;
+//     images = Images.fromJson(json['images']);
+//   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['youtube_id'] = youtubeId;
-    _data['url'] = url;
-    _data['embed_url'] = embedUrl;
-    _data['images'] = images.toJson();
-    return _data;
-  }
-}
+//   Map<String, dynamic> toJson() {
+//     final _data = <String, dynamic>{};
+//     _data['youtube_id'] = youtubeId;
+//     _data['url'] = url;
+//     _data['embed_url'] = embedUrl;
+//     _data['images'] = images.toJson();
+//     return _data;
+//   }
+// }
 
 class Aired {
   Aired({

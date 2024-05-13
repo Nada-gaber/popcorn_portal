@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'anime_data.dart';
 import 'data_images.dart';
-import 'pagination_model.dart';
+import '../../../pagination/data/model/pagination_model.dart';
 part 'anime_model.g.dart';
 
 @JsonSerializable()
@@ -62,10 +62,6 @@ class Titles {
     return _data;
   }
 }
-
-
-
-
 
 class Trailer {
   Trailer({

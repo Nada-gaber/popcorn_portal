@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'anime_model.dart';
+import '../../../home/data/model/anime_model.dart';
 
 part 'pagination_model.g.dart';
 

@@ -8,27 +8,20 @@ import 'package:popcorn_portal/features/home/logic/cubit/anime_data_states.dart'
 import 'package:popcorn_portal/features/home/ui/widgets/anime_data_item_widget.dart';
 
 class AnimeDataScreen extends StatelessWidget {
-  const AnimeDataScreen({super.key});
+ 
+  const AnimeDataScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AnimeDataCubit>(
+    return BlocProvider(
       create: (context) {
         final cubit = AnimeDataCubit(AnimeDataRepo(WebServices(Dio())));
-        cubit.fetchCompanyInfo();
+        cubit.fetchAnimeData();
         return cubit;
       },
-      child: BlocConsumer<AnimeDataCubit, AnimeDataState>(
-        listener: (context, state) {
-          if (state is AnimeDataError) {
-            final errorState = state;
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Error: $errorState'),
-              ),
-            );
-          }
-        },
+      child: BlocBuilder<AnimeDataCubit, AnimeDataState>(
         builder: (context, state) {
           if (state is AnimeDataInitial) {
             return const Center(
@@ -43,31 +36,37 @@ class AnimeDataScreen extends StatelessWidget {
           } else if (state is AnimeDataLoaded) {
             final animeData = state.animeData;
             return Scaffold(
-              backgroundColor: Color.fromARGB(255, 7, 3, 26),
+              backgroundColor: const Color(0xFF07031A),
               body: SingleChildScrollView(
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: animeData.data!.length,
-                    itemBuilder: (context, index) {
-                      return AnimeDataItme(
-                        imageUrl: animeData.data![index].images!.jpg!.imageurl
-                            .toString(),
-                        title: animeData.data![index].title.toString(),
-                        duration: animeData.data![index].duration.toString(),
-                        rating: animeData.data![index].rating.toString(),
-                        type: animeData.data![index].type.toString(),
-                      );
-                    },
-                  ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: animeData.data!.length,
+                        itemBuilder: (context, index) {
+                          return AnimeDataItme(
+                            imageUrl: animeData
+                                .data![index].images!.jpg!.imageurl
+                                .toString(),
+                            title: animeData.data![index].title.toString(),
+                            duration:
+                                animeData.data![index].duration.toString(),
+                            rating: animeData.data![index].rating.toString(),
+                            type: animeData.data![index].type.toString(),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             );
           } else if (state is AnimeDataError) {
-            return const Text('Error fetching data.');
+            return Text('cute error :${state.error.toString()}');
           } else {
             return Text('Unexpected state: $state');
           }

@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:popcorn_portal/features/home/ui/screens/details.dart';
+
 
 class AnimeDataItme extends StatelessWidget {
   final String imageUrl;
@@ -25,6 +27,16 @@ class AnimeDataItme extends StatelessWidget {
     return Padding(
       padding: const EdgeInsetsDirectional.symmetric(vertical: 6),
       child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AnimeDetails(
+                imageUrl: imageUrl,
+              ),
+            ),
+          );
+        },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

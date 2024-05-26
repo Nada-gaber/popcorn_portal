@@ -10,7 +10,7 @@ class AnimeDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('hi'),
+        title: const Text('hi'),
       ),
       body: Center(
         child: Hero(

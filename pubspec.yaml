@@ -25,6 +25,7 @@ dependencies:
   cached_network_image: ^3.3.1
   # for error handling
   dartz: ^0.10.1
+  concentric_transition: ^1.0.3
   
 dev_dependencies:
   flutter_test:

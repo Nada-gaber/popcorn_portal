@@ -12,7 +12,7 @@ class PopcornPortal extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.home,
+      initialRoute: Routes.onBoarding,
       onGenerateRoute: appRouter.generatRoutes,
     );
   }

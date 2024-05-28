@@ -10,18 +10,18 @@ class Data {
   bool? approved;
   String? duration;
   String? rating;
-  // double? score;
+  num? score;
   String? type;
   String? source;
-  // int? episodes;
+  num? episodes;
   String? status;
-  // int? members;
-  // int? favorites;
-  // int? scoredBy;
-  // int? rank;
-  // int? popularity;
+  num? members;
+  num? favorites;
+  num? scoredBy;
+  num? rank;
+  num? popularity;
   String? season;
-  // int? year;
+  num? year;
 
   Data(
       {this.malid,
@@ -30,22 +30,21 @@ class Data {
       this.title,
       this.titleEnglish,
       this.titleJapanese,
-       this.approved,
-       this.duration,
+      this.approved,
+      this.duration,
       this.rating,
-      // this.score,
+      this.score,
       this.type,
       this.source,
-      // this.episodes,
+      this.episodes,
       this.status,
-      // this.members,
-      // this.favorites,
-      // this.scoredBy,
-      // this.rank,
-      // this.popularity,
-      // this.season,
-      // this.year
-      });
+      this.members,
+      this.favorites,
+      this.scoredBy,
+      this.rank,
+      this.popularity,
+      this.season,
+      this.year});
 
   Data.fromJson(Map<String, dynamic> json) {
     malid = json['mal_id'];
@@ -57,18 +56,18 @@ class Data {
     approved = json['approved'];
     duration = json['duration'];
     rating = json['rating'];
-    // score = json['score'];
+    score = json['score'];
     type = json['type'];
     source = json['source'];
-    // episodes = json['episodes'];
+    episodes = json['episodes'];
     status = json['status'];
-    // members = json['members'];
-    // favorites = json['favorites'];
-    // scoredBy = json['scoredBy'];
-    // rank = json['rank'];
-    // popularity = json['popularity'];
-    // season = json['season'];
-    // year = json['year'];
+    members = json['members'];
+    favorites = json['favorites'];
+    scoredBy = json['scoredBy'];
+    rank = json['rank'];
+    popularity = json['popularity'];
+    season = json['season'];
+    year = json['year'];
   }
 
   Map<String, dynamic> toJson() {
@@ -82,18 +81,18 @@ class Data {
     data['approved'] = approved;
     data['duration'] = duration;
     data['rating'] = rating;
-    // data['score'] = score;
+    data['score'] = score;
     data['type'] = type;
     data['source'] = source;
-    // data['episodes'] = episodes;
+    data['episodes'] = episodes;
     data['status'] = status;
-    // data['members'] = members;
-    // data['favorites'] = favorites;
-    // data['scoredBy'] = scoredBy;
-    // data['rank'] = rank;
-    // data['popularity'] = popularity;
-    // data['season'] = season;
-    // data['year'] = year;
+    data['members'] = members;
+    data['favorites'] = favorites;
+    data['scoredBy'] = scoredBy;
+    data['rank'] = rank;
+    data['popularity'] = popularity;
+    data['season'] = season;
+    data['year'] = year;
 
     return data;
   }

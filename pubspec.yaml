@@ -15,7 +15,7 @@ dependencies:
   dio: ^5.4.3+1
   retrofit: ^4.1.0
   retrofit_generator: ^8.1.0
-# logic
+  # logic
   bloc: ^8.1.4
   json_serializable: ^6.7.1
   json_annotation: ^4.8.1
@@ -25,7 +25,11 @@ dependencies:
   cached_network_image: ^3.3.1
   # for error handling
   dartz: ^0.10.1
+  # onboarding
   concentric_transition: ^1.0.3
+  readmore: ^3.0.0
+  url_launcher: ^6.2.6
+  webview_flutter: ^4.8.0
   
 dev_dependencies:
   flutter_test:

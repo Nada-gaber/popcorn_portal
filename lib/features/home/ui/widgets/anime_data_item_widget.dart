@@ -1,22 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:popcorn_portal/features/home/ui/screens/details.dart';
-
+import '../../data/model/anime_model.dart';
 
 class AnimeDataItme extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String duration;
-  final String rating;
-  final String type;
-
+  final Anime animeData;
   const AnimeDataItme({
     super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.duration,
-    required this.rating,
-    required this.type,
+    required this.animeData,
   });
 
   @override
@@ -24,101 +15,77 @@ class AnimeDataItme extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
 
-    return Padding(
-      padding: const EdgeInsetsDirectional.symmetric(vertical: 6),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AnimeDetails(
-                imageUrl: imageUrl,
-              ),
-            ),
-          );
-        },
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: screenHeight / 3.5,
-              child: AspectRatio(
-                aspectRatio: 1 / 1.2,
-                child: ClipRRect(
-                    borderRadius: BorderRadiusDirectional.circular(16),
-                    child: Hero(
-                      tag: imageUrl,
-                      child: CachedNetworkImage(
-                        imageUrl: imageUrl,
-                        fit: BoxFit.fill,
+    return SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height / 1.5,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemCount: animeData.data!.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AnimeDetails(
+                        animeData: animeData,
+                        index: index,
                       ),
-                    )),
-              ),
-            ),
-            const SizedBox(
-              width: 6,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //   episodes
-                  Padding(
-                    padding: const EdgeInsetsDirectional.symmetric(
-                        horizontal: 8, vertical: 8),
-                    child: Text(
-                      title,
-                      style: TextStyle(
-                          fontSize: screenWidth / 20,
-                          fontWeight: FontWeight.w500),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  //       Members
-                  Row(
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(
-                        Icons.timelapse,
-                        size: screenWidth / 15,
-                        color: Colors.purpleAccent,
-                      ),
-                      Flexible(
-                        child: Text(
-                          duration,
-                          style: TextStyle(
-                              fontSize: screenWidth / 24,
-                              fontWeight: FontWeight.w300),
+                      SizedBox(
+                        height: screenHeight / 3.5,
+                        child: AspectRatio(
+                          aspectRatio: 1 / 1.2,
+                          child: ClipRRect(
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(16),
+                              child: Hero(
+                                tag: 'tagImage$index',
+                                child: CachedNetworkImage(
+                                  imageUrl: animeData
+                                      .data![index].images!.jpg!.imageurl
+                                      .toString(),
+                                  fit: BoxFit.fill,
+                                ),
+                              )),
                         ),
                       ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 0, vertical: 3),
+                        child: SizedBox(
+                          width: 150,
+                          child: Text(
+                            animeData.data![index].title.toString(),
+                            style: TextStyle(
+                                fontSize: screenWidth / 23,
+                                fontWeight: FontWeight.w500),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        animeData.data![index].type.toString(),
+                        style: TextStyle(
+                            fontSize: screenWidth / 29,
+                            fontWeight: FontWeight.w300),
+                      )
                     ],
                   ),
-                  Text(
-                    rating,
-                    style: TextStyle(
-                        fontSize: screenWidth / 20,
-                        fontWeight: FontWeight.w300),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    type,
-                    style: TextStyle(
-                        fontSize: screenWidth / 20,
-                        fontWeight: FontWeight.w300),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+                ),
+              );
+            }));
   }
 }

@@ -5,7 +5,7 @@ import 'package:popcorn_portal/features/home/data/repo/anime_data_repo.dart';
 import 'package:popcorn_portal/features/home/logic/cubit/anime_data_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:popcorn_portal/features/home/logic/cubit/anime_data_states.dart';
-import 'package:popcorn_portal/features/home/ui/widgets/anime_data_item_widget.dart';
+import 'package:popcorn_portal/features/home/ui/widgets/anime_listview/anime_data_item_widget.dart';
 
 import '../widgets/home_app_bar.dart';
 

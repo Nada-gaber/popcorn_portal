@@ -6,13 +6,13 @@ import 'package:popcorn_portal/features/home/logic/cubit/anime_data_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:popcorn_portal/features/home/logic/cubit/anime_data_states.dart';
 import 'package:popcorn_portal/features/home/ui/widgets/anime_listview/anime_data_item_widget.dart';
+import 'package:popcorn_portal/features/home/ui/widgets/home_search_textfield.dart';
 
 import '../widgets/home_app_bar.dart';
 
 class AnimeDataScreen extends StatelessWidget {
-
   const AnimeDataScreen({
-    super.key, 
+    super.key,
   });
 
   @override
@@ -40,11 +40,18 @@ class AnimeDataScreen extends StatelessWidget {
               final animeData = state.animeData;
               return SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 22.0, top: 13),
+                  padding: const EdgeInsets.only(left: 22.0, top: 13,right: 22),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const HomeAppBar(),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const SearchTextField(),
+                      const SizedBox(
+                        height: 25,
+                      ),
                       const Text(
                         'Popular movies',
                         style: TextStyle(
@@ -54,7 +61,7 @@ class AnimeDataScreen extends StatelessWidget {
                         height: 5,
                       ),
                       AnimeDataItme(
-                        animeData: animeData, 
+                        animeData: animeData,
                       ),
                     ],
                   ),

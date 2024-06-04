@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:popcorn_portal/features/home/ui/screens/details.dart';
+import 'package:popcorn_portal/features/home/ui/screens/anime_details.dart';
 import 'package:popcorn_portal/features/home/ui/widgets/item_image.dart';
 import 'package:popcorn_portal/features/home/ui/widgets/item_title.dart';
 import '../../../data/model/anime_model.dart';
@@ -17,7 +17,7 @@ class AnimeDataItme extends StatelessWidget {
 
     return SizedBox(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 1.5,
+        
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,

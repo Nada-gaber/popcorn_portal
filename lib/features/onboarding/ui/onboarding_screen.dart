@@ -1,7 +1,8 @@
 import 'package:concentric_transition/page_view.dart';
 import 'package:flutter/material.dart';
+import 'package:popcorn_portal/features/home/ui/screens/home_screen.dart';
 import 'package:popcorn_portal/features/onboarding/ui/widgets/OnBoardingItem.dart';
-import '../../home/ui/screens/home_screen.dart';
+import '../../home/ui/screens/anime_listview.dart';
 import '../model/onboarding_model.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         },
         onFinish: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const AnimeDataScreen();
+            return const HomeScreen();
           }));
         },
       ),

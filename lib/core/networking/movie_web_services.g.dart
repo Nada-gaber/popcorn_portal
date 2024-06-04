@@ -8,12 +8,12 @@ part of 'movie_web_services.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _WebServices implements WebServices {
-  _WebServices(
+class _WebServicesShow implements WebServicesShow {
+  _WebServicesShow(
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://api.tvmaze.com/';
+    baseUrl ??= 'https://api.tvmaze.com/shows';
   }
 
   final Dio _dio;
@@ -34,7 +34,7 @@ class _WebServices implements WebServices {
     )
             .compose(
               _dio.options,
-              'shows',
+              'https://api.tvmaze.com/shows',
               queryParameters: queryParameters,
               data: _data,
             )

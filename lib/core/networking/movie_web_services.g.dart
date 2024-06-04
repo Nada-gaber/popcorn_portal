@@ -13,7 +13,7 @@ class _WebServices implements WebServices {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://api.tvmaze.com/shows';
+    baseUrl ??= 'https://api.tvmaze.com/';
   }
 
   final Dio _dio;
@@ -34,7 +34,7 @@ class _WebServices implements WebServices {
     )
             .compose(
               _dio.options,
-              'https://api.jikan.moe/v4/anime/',
+              'shows',
               queryParameters: queryParameters,
               data: _data,
             )

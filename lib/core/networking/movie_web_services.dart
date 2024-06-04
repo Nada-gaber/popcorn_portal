@@ -10,6 +10,9 @@ part 'movie_web_services.g.dart';
 abstract class WebServices {
   factory WebServices(Dio dio, {String baseUrl}) = _WebServices;
 
-  @GET(ApiConstants.apiUrl)
+  @GET('shows')
   Future<Show> getShowsData();
+
+
+
 }

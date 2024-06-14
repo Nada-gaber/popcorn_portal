@@ -1,4 +1,4 @@
-# popcorn portal
+# Popcorn Portal
 
 A new Flutter project.
 

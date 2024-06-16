@@ -1,6 +1,6 @@
-# Popcorn Portal
+ا# Popcorn Portal
 
-A new Flutter project.
+A new Flutte project.
 
 # Getting Started
 

@@ -1,6 +1,6 @@
 # Popcorn Portal
 
-A new Flutte project.
+ Flutte project.
 
 # Getting Started
 

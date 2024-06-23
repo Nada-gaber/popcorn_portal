@@ -8,7 +8,7 @@ class AppRouter {
   Route? generatRoutes(RouteSettings settings) {
     switch (settings.name) {
       case Routes.home:
-        return MaterialPageRoute(builder: (context) => const AnimeDataScreen());
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
       case Routes.onBoarding:
         return MaterialPageRoute(
             builder: (context) => const OnBoardingScreen());

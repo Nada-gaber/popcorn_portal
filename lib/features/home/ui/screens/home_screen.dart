@@ -1,21 +1,22 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:popcorn_portal/core/networking/web_services.dart';
+import 'package:popcorn_portal/core/widgets/textfield_decoration.dart';
 import 'package:popcorn_portal/features/home/data/repo/anime_data_repo.dart';
 import 'package:popcorn_portal/features/home/logic/cubit/anime_data_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:popcorn_portal/features/home/logic/cubit/anime_data_states.dart';
 import 'package:popcorn_portal/features/home/ui/widgets/anime_listview/anime_data_item_widget.dart';
-import 'package:popcorn_portal/features/home/ui/widgets/home_search_textfield.dart';
 import '../widgets/home_app_bar.dart';
 
 class AnimeDataScreen extends StatelessWidget {
   const AnimeDataScreen({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
+      final TextEditingController searchController = TextEditingController();
+
     return BlocProvider(
       create: (context) {
         final cubit = AnimeDataCubit(AnimeDataRepo(WebServices(Dio())));
@@ -48,7 +49,10 @@ class AnimeDataScreen extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      const SearchTextField(),
+                       CustomTextField(
+                          textEditingController: searchController,
+                          hintText: 'Search',
+                          icon: Icons.search),
                       const SizedBox(
                         height: 25,
                       ),

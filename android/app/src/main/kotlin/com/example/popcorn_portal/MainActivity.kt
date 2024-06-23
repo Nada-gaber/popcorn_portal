@@ -1,4 +1,4 @@
-package com.example.popcorn_portal
+package com.example.popcornportal
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn_portal/features/home/ui/screens/home_screen.dart';
+import 'package:popcorn_portal/features/login/ui/login_screen.dart';
 
 import '../../features/onboarding/ui/onboarding_screen.dart';
 import 'routes.dart';
@@ -12,6 +13,8 @@ class AppRouter {
       case Routes.onBoarding:
         return MaterialPageRoute(
             builder: (context) => const OnBoardingScreen());
+      case Routes.login:
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
     }
     return null;
   }

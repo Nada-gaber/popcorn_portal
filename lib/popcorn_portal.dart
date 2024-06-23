@@ -11,10 +11,12 @@ class PopcornPortal extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          primaryColor: Colors.red,
+          fontFamily: 'Roboto',
           brightness: Brightness.dark,
           scaffoldBackgroundColor: const Color(0xFF0E0F0F)),
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.home,
+      initialRoute: Routes.login,
       onGenerateRoute: appRouter.generatRoutes,
     );
   }
